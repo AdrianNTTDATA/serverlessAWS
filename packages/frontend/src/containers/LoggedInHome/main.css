@@ -1,0 +1,10 @@
+.inputAddAmessage {
+    background-color: black !important ;
+    color: lime !important;
+    font-family: monospace;
+    border: none;
+    border-bottom: lime !important;
+    padding: 5px;
+    width: 20%;
+    box-sizing: border-box;
+}

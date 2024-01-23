@@ -1,0 +1,37 @@
+.Home .lander {
+  padding: 80px 0;
+  text-align: center;
+}
+  
+.Home .lander h1 {
+  font-family: monospace; /* Terminal font */
+  font-weight: 600;
+}
+
+.binary-text {
+  color: #00ff00; /* Terminal green color */
+}
+
+
+.terminal-container {
+  display: flex;
+  position: fixed;
+  position: fixed;
+  bottom: 0;
+  font-size: 20px;
+  left: 0;
+  color: #00ff00; /* Terminal white text color */
+}
+
+.terminal-input {
+  width: 100%;
+  color: #00ff00; /* Terminal white text color */
+  font-family: monospace; /* Terminal font */
+  font-weight: 100;
+  top: -0.25rem;
+  position: relative;
+  border: none;
+  outline: none;
+}
+
+

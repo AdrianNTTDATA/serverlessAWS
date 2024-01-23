@@ -1,2 +1,4 @@
-.App {
+.binary-text {
+  color: #00ff00 !important; /* Terminal green color */
+  font-family: monospace;
 }
