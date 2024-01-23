@@ -2,10 +2,7 @@ import React from "react";
 import AddAMessage from "./AddAMessage";
 
 
-function App() {
-
-
-
+function LoggedInHome() {
   return (
       <div className="App container">
         <AddAMessage/>
@@ -13,4 +10,4 @@ function App() {
     )
 }
 
-export default App;
+export default LoggedInHome;

@@ -2,13 +2,34 @@ import React, { useState } from "react";
 import "./Home.css";
 import Typewriter from "typewriter-effect";
 import GenerateRandomTerminalInputs from "../../components/GenerateRandomTerminalInputs/GenerateRandomTerminalInputs";
-
+import constants from "./constants";
+const suggestion = "/profile";
 
 export default function Home() {
   const [terminalInput, setTerminalInput] = useState("");
+  const [activeSuggestion, setActiveSuggestion] = useState("");
 
+  const findSuggestions = () => {
+    for (let i = 0; i < constants.length; i++) {
+      if (constants[i].includes(terminalInput)) {
+        return constants[i];
+      }
+    }
+    return ''
+  
+  }
   const handleTerminalInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTerminalInput(event.target.value);
+    const inputValue = event.target.value;
+    setTerminalInput(inputValue);
+    setActiveSuggestion(findSuggestions());
+  };
+
+  const handleTerminalInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Tab" && activeSuggestion) {
+      event.preventDefault();
+      setTerminalInput(activeSuggestion);
+      setActiveSuggestion("");
+    }
   };
 
   const handleTerminalInputSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +55,7 @@ export default function Home() {
               }}
             />
           </h1>
-            <p>Connect with random strangers and engage in conversations about various topics</p>
+          <p>Connect with random strangers and engage in conversations about various topics</p>
         </div>
         <div className="binary-text">
           <GenerateRandomTerminalInputs />
@@ -42,17 +63,23 @@ export default function Home() {
         <form onSubmit={handleTerminalInputSubmit}>
           <span>
             <div className="terminal-container">
-              <h1 style={{width: '46rem', fontSize: '20px'}}>guest@localhost /root $</h1>
-                <input
-                  className="terminal-input"
-                  type="text"
-                  value={terminalInput}
-                  onChange={handleTerminalInputChange}
-                />
+              <h1 style={{ width: '46rem', fontSize: '20px' }}>guest@localhost /root $</h1>
+              <input
+                className="terminal-input"
+                value={terminalInput}
+                onChange={handleTerminalInputChange}
+                onKeyDown={handleTerminalInputKeyDown}
+              />
+              {activeSuggestion && (
+                <span style={{ color: activeSuggestion === suggestion ? 'green' : 'grey' }}>
+                  {activeSuggestion}
+                </span>
+              )}
             </div>
-            </span>
+          </span>
         </form>
       </div>
     </div>
   );
 }
+

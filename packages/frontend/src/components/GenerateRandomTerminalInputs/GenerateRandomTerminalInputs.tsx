@@ -24,7 +24,6 @@ const GenerateRandomTerminalInputs = () => {
                         onInit={(typewriter) => {
                             typewriter.typeString(terminalInput)
                                 .callFunction(() => {
-                                    console.log('String typed out!');
                                 })
                                 .pauseFor(Math.floor(Math.random() * 5000) + 1000)
                                 .start();
