@@ -6,12 +6,12 @@
 .Home .lander h1 {
   font-family: monospace; /* Terminal font */
   font-weight: 600;
+  text-align: center;
 }
 
 .binary-text {
   color: #00ff00; /* Terminal green color */
 }
-
 
 .terminal-container {
   display: flex;
@@ -33,5 +33,3 @@
   border: none;
   outline: none;
 }
-
-

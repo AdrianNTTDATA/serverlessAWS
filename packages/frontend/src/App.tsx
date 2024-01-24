@@ -7,6 +7,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { AppContext, AppContextType } from "./lib/contextlib";
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
+import TerminalInput from "./components/TerminalInput/TerminalInput.tsx";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   async function handleLogout() {
     await Auth.signOut();
     userHasAuthenticated(false);
+    window.localStorage.removeItem('username')
     nav("/");
   }
   React.useEffect(() => {
@@ -25,7 +27,9 @@ function App() {
   
   async function onLoad() {
     try {
-      await Auth.currentSession();
+      const userData = await Auth.currentSession();
+      console.log(userData)
+      window.localStorage.setItem('username', userData?.idToken.payload.email)
       userHasAuthenticated(true);
     } catch (e) {
       if (e !== "No current user") {
@@ -65,6 +69,7 @@ function App() {
           value={{ isAuthenticated, userHasAuthenticated } as AppContextType}
         >
           <Routes />
+          <TerminalInput />
         </AppContext.Provider>
       </div>
     )
